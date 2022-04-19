@@ -109,7 +109,7 @@ CREATE TABLE movies (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   title TEXT,
   year INTEGER,
-  MPAA_rating TEXT,
+  mpaa_rating TEXT,
   studio TEXT
 );
 
@@ -200,7 +200,7 @@ VALUES (11, 3);
 
 -- The SQL statement for the movies output
 .width 25
-SELECT title, year, MPAA_rating, studio
+SELECT title, year, mpaa_rating, studio
 FROM movies;
 
 -- Prints a header for the cast output
