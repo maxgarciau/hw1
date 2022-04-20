@@ -136,44 +136,48 @@ CREATE TABLE studios (
 
 -- Insert data into movies table
 INSERT INTO movies (title, year, MPAA_rating, studio_id)
-VALUES ("Batman Begins", 2005, "PG-13", 1),
-("The Dark Knight", 2008, "PG-13", 1),
-("The Dark Knight Rises", 2012, "PG-13", 1);
+VALUES
+  ("Batman Begins", 2005, "PG-13", 1),
+  ("The Dark Knight", 2008, "PG-13", 1),
+  ("The Dark Knight Rises", 2012, "PG-13", 1);
 
 -- Insert data into characters table
 INSERT INTO characters (char_name, actor_name)
-VALUES ("Bruce Wayne", "Christian Bale"),
-("Alfred", "Michael Caine"),
-("Ra's Al Ghul", "Liam Neeson"),
-("Rachel Dawes", "Katie Holmes"),
-("Commissioner Gordon", "Gary Oldman"),
-("Joker", "Heath Ledger"),
-("Harvey Dent", "Aaron Eckhart"),
-("Rachel Dawes", "Maggie Gyllenhaal"),
-("Bane", "Tom Hardy"),
-("John Blake", "Joseph Gordon-Levitt"),
-("Selina Kyle", "Anne Hathaway");
+VALUES 
+  ("Bruce Wayne", "Christian Bale"),
+  ("Alfred", "Michael Caine"),
+  ("Ra's Al Ghul", "Liam Neeson"),
+  ("Rachel Dawes", "Katie Holmes"),
+  ("Commissioner Gordon", "Gary Oldman"),
+  ("Joker", "Heath Ledger"),
+  ("Harvey Dent", "Aaron Eckhart"),
+  ("Rachel Dawes", "Maggie Gyllenhaal"),
+  ("Bane", "Tom Hardy"),
+  ("John Blake", "Joseph Gordon-Levitt"),
+  ("Selina Kyle", "Anne Hathaway");
 
 -- Insert data into casts table
 INSERT INTO casts (char_id, movie_id)
-VALUES (1, 1),
-(1, 2),
-(1, 3),
-(2, 1),
-(2, 2),
-(3, 1),
-(4, 1),
-(5, 1),
-(5, 3),
-(6, 2),
-(7, 2),
-(8, 2),
-(9, 3),
-(10, 3),
-(11, 3);
+VALUES 
+  (1, 1),
+  (1, 2),
+  (1, 3),
+  (2, 1),
+  (2, 2),
+  (3, 1),
+  (4, 1),
+  (5, 1),
+  (5, 3),
+  (6, 2),
+  (7, 2),
+  (8, 2),
+  (9, 3),
+  (10, 3),
+  (11, 3);
 
 INSERT INTO studios (studio_name)
-VALUES ("Warner Bros.");
+VALUES 
+  ("Warner Bros.");
 
 -- Prints a header for the movies output
 .print ""
@@ -192,7 +196,6 @@ ON movies.studio_id=studios.id;
 .print "Top Cast"
 .print "========"
 .print ""
-
 
 -- The SQL statement for the cast output
 .width 25 20 30
