@@ -103,6 +103,7 @@
 DROP TABLE IF EXISTS movies;
 DROP TABLE IF EXISTS characters;
 DROP TABLE IF EXISTS casts;
+DROP TABLE IF EXISTS studios;
 
 -- Create new tables, according to your domain model
 CREATE TABLE movies (
@@ -110,7 +111,7 @@ CREATE TABLE movies (
   title TEXT,
   year INTEGER,
   mpaa_rating TEXT,
-  studio TEXT
+  studio_id INTEGER
 );
 
 CREATE TABLE characters (
@@ -125,72 +126,54 @@ CREATE TABLE casts (
   movie_id INTEGER
 );
 
+CREATE TABLE studios (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  studio_name TEXT
+);
+
 -- Insert data into your database that reflects the sample data shown above
 -- Use hard-coded foreign key IDs when necessary
 
 -- Insert data into movies table
-INSERT INTO movies (title, year, MPAA_rating, studio)
-VALUES ("Batman Begins", 2005, "PG-13", "Warner Bros.");
-INSERT INTO movies (title, year, MPAA_rating, studio)
-VALUES ("The Dark Knight", 2008, "PG-13", "Warner Bros.");
-INSERT INTO movies (title, year, MPAA_rating, studio)
-VALUES ("The Dark Knight Rises", 2012, "PG-13", "Warner Bros.");
+INSERT INTO movies (title, year, MPAA_rating, studio_id)
+VALUES ("Batman Begins", 2005, "PG-13", 1),
+("The Dark Knight", 2008, "PG-13", 1),
+("The Dark Knight Rises", 2012, "PG-13", 1);
 
 -- Insert data into characters table
 INSERT INTO characters (char_name, actor_name)
-VALUES ("Bruce Wayne", "Christian Bale");
-INSERT INTO characters (char_name, actor_name)
-VALUES ("Alfred", "Michael Caine");
-INSERT INTO characters (char_name, actor_name)
-VALUES ("Ra's Al Ghul", "Liam Neeson");
-INSERT INTO characters (char_name, actor_name)
-VALUES ("Rachel Dawes", "Katie Holmes");
-INSERT INTO characters (char_name, actor_name)
-VALUES ("Commissioner Gordon", "Gary Oldman");
-INSERT INTO characters (char_name, actor_name)
-VALUES ("Joker", "Heath Ledger");
-INSERT INTO characters (char_name, actor_name)
-VALUES ("Harvey Dent", "Aaron Eckhart");
-INSERT INTO characters (char_name, actor_name)
-VALUES ("Rachel Dawes", "Maggie Gyllenhaal");
-INSERT INTO characters (char_name, actor_name)
-VALUES ("Bane", "Tom Hardy");
-INSERT INTO characters (char_name, actor_name)
-VALUES ("John Blake", "Joseph Gordon-Levitt");
-INSERT INTO characters (char_name, actor_name)
-VALUES ("Selina Kyle", "Anne Hathaway");
+VALUES ("Bruce Wayne", "Christian Bale"),
+("Alfred", "Michael Caine"),
+("Ra's Al Ghul", "Liam Neeson"),
+("Rachel Dawes", "Katie Holmes"),
+("Commissioner Gordon", "Gary Oldman"),
+("Joker", "Heath Ledger"),
+("Harvey Dent", "Aaron Eckhart"),
+("Rachel Dawes", "Maggie Gyllenhaal"),
+("Bane", "Tom Hardy"),
+("John Blake", "Joseph Gordon-Levitt"),
+("Selina Kyle", "Anne Hathaway");
 
 -- Insert data into casts table
 INSERT INTO casts (char_id, movie_id)
-VALUES (1, 1);
-INSERT INTO casts (char_id, movie_id)
-VALUES (1, 2);
-INSERT INTO casts (char_id, movie_id)
-VALUES (1, 3);
-INSERT INTO casts (char_id, movie_id)
-VALUES (2, 1);
-INSERT INTO casts (char_id, movie_id)
-VALUES (2, 2);
-INSERT INTO casts (char_id, movie_id)
-VALUES (3, 1);
-INSERT INTO casts (char_id, movie_id)
-VALUES (4, 1);
-INSERT INTO casts (char_id, movie_id)
-VALUES (5, 1);
-INSERT INTO casts (char_id, movie_id)
-VALUES (5, 3);
-INSERT INTO casts (char_id, movie_id)
-VALUES (6, 2);
-INSERT INTO casts (char_id, movie_id)
-VALUES (7, 2);
-INSERT INTO casts (char_id, movie_id)
-VALUES (8, 2);
-INSERT INTO casts (char_id, movie_id)
-VALUES (9, 3);
-INSERT INTO casts (char_id, movie_id)
-VALUES (10, 3);
-INSERT INTO casts (char_id, movie_id)
-VALUES (11, 3);
+VALUES (1, 1),
+(1, 2),
+(1, 3),
+(2, 1),
+(2, 2),
+(3, 1),
+(4, 1),
+(5, 1),
+(5, 3),
+(6, 2),
+(7, 2),
+(8, 2),
+(9, 3),
+(10, 3),
+(11, 3);
+
+INSERT INTO studios (studio_name)
+VALUES ("Warner Bros.");
 
 -- Prints a header for the movies output
 .print ""
@@ -199,9 +182,10 @@ VALUES (11, 3);
 .print ""
 
 -- The SQL statement for the movies output
-.width 25
-SELECT title, year, mpaa_rating, studio
-FROM movies;
+.width 25 5 7 20
+SELECT movies.title, movies.year, movies.mpaa_rating, studios.studio_name
+FROM movies INNER JOIN studios 
+ON movies.studio_id=studios.id;
 
 -- Prints a header for the cast output
 .print ""
